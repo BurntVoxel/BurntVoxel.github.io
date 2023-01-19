@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Simply a Clock</title>
+<meta charset="UTF-8"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+
+@import url("../Skltl/CSS/Skltl.css");
+body{
+    background-color:cornflowerblue;
+}
+main{
+    display:flex;
+    justify-content:center;
+}
+svg#clock{
+    max-width:  100vw;
+    max-height: 100vh;
+    fill: var(--back);
+    fill-opacity: .5;
+    stroke:var(--fore);
+    stroke-width:.25em;
+    stroke-linecap:round;
+    
+}
+
+</style>
+</head>
+<body>
+
+<main>
+    <svg id="clock" viewbox = "0 0 1000 1000">
+        <g id="clock-face">
+            <circle cx="500" cy="500"r="500"/>
+            <circle cx="500" cy="500" r="450"/>
+            <path d="M 499.99997 97.499992 L 406.59947 151.42487 L 298.75024 151.42487 L 244.82537 244.82537 L 151.42487 298.75024 L 151.42487 406.59947 L 97.499992 499.99997 L 151.42487 593.40047 L 151.42487 701.25022 L 244.82588 755.17509 L 298.75024 848.57508 L 406.59947 848.57508 L 499.99997 902.49995 L 593.40047 848.57508 L 701.25022 848.57508 L 755.17458 755.17458 L 848.57508 701.25022 L 848.57508 593.40047 L 902.49995 499.99997 L 848.57508 406.59947 L 848.57508 298.75024 L 755.17509 244.82588 L 701.25022 151.42487 L 593.40047 151.42487 L 499.99997 97.499992 z "/>
+            <path d="m 848.57512,406.59958 0,186.80084 -93.40042,161.77428 -161.77428,93.40042 -186.80084,0 -161.77428,-93.40042 -93.40042,-161.77428 0,-186.80084 93.40042,-161.77428 161.77428,-93.40042 186.80084,0 161.77428,93.40042 z"/>
+        </g>
+        <g id="clock-hour-hand" transform="">
+            <circle cx="500" cy="500" r=".75em"/>
+            <line x1="500" y1="550" x2="500" y2="325"/>
+        </g>
+        <g id="clock-minute-hand" transform="">
+            <circle cx="500" cy="500" r=".5em"/>
+            <line x1="500" y1="550" x2="500" y2="190"/>
+        </g>
+        <g id="clock-second-hand" transform="">
+            <circle cx="500" cy="500" r=".25em"/>
+            <line x1="500" y1="550" x2="500" y2="150"/>
+        </g>
+    </svg>    
+</main>
+
+</body>
+<script>
+
+    ClockTick();
+    setInterval(ClockTick, 1000);
+    function ClockTick(){
+        let seconds = new Date().getSeconds();
+        document.querySelector("#clock-second-hand").setAttribute("transform", `rotate(${(seconds*6)}, 500, 500)`);
+        let minutes = new Date().getMinutes();
+        document.querySelector("#clock-minute-hand").setAttribute("transform", `rotate(${(minutes*6) + (seconds/10)}, 500, 500)`);
+        let hours = new Date().getHours();
+        document.querySelector("#clock-hour-hand").setAttribute("transform", `rotate(${(hours*30) + (minutes/10) + (seconds*(1/6))}, 500, 500)`);
+    }
+
+</script>
+</html>
