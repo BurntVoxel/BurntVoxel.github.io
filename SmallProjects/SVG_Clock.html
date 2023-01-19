@@ -53,17 +53,37 @@ svg#clock{
 
 </body>
 <script>
-
-    ClockTick();
-    setInterval(ClockTick, 1000);
-    function ClockTick(){
-        let seconds = new Date().getSeconds();
-        document.querySelector("#clock-second-hand").setAttribute("transform", `rotate(${(seconds*6)}, 500, 500)`);
-        let minutes = new Date().getMinutes();
-        document.querySelector("#clock-minute-hand").setAttribute("transform", `rotate(${(minutes*6) + (seconds/10)}, 500, 500)`);
-        let hours = new Date().getHours();
-        document.querySelector("#clock-hour-hand").setAttribute("transform", `rotate(${(hours*30) + (minutes/10)}, 500, 500)`);
+    
+    function SetClock(hours, minutes, seconds){
+        // let SPosition = (seconds * (360/60));
+        // (seconds * (360/60 == 6))
+        let SPosition = (seconds * 6);
+        document.querySelector("#clock-second-hand").setAttribute("transform", `rotate(${SPosition}, 500, 500)`);
+        
+        // let MPosition = (minutes * (360/60)) + (seconds * (1/60) * (360/60));
+        // (minutes * (360/60 == 6));
+        // (seconds * ((1/60) * (360/60) == (360/3600)));
+        // (seconds * (360/3600 == 0.1));
+        let MPosition = (minutes*6) + (seconds*0.1);
+        document.querySelector("#clock-minute-hand").setAttribute("transform", `rotate(${MPosition}, 500, 500)`);
+        
+        // let HPosition = (hours * (360/12)) + (minutes * (1/60) * (360/12)) + (seconds * (1/60) * (1/60) * (360/12));
+        // (hours * (360/12 == 30));
+        // (minutes * ((1/60) * (360/12) == (360/7200)))
+        // (minutes * (360/7200 == .005))
+        // (seconds * ((1/60) * (1/60) == (1/3600)) * (360/12))
+        // (seconds * ((1/3600) * (360/12) == (360/43200)))
+        // (seconds * ((360/43200) == 0.008333...)); no that's worse...
+        // (seconds * (360/43200) == (36/4320) == 1/120)
+        let HPosition = (hours * 30) + (minutes * .005) + (seconds * (1/120));
+        document.querySelector("#clock-hour-hand").setAttribute("transform", `rotate(${HPosition}, 500, 500)`);
     }
-
+    
+    function UpdateClock(){
+        let time=new Date();
+        SetClock(time.getHours(), time.getMinutes(), time.getSeconds());
+    }
+    UpdateClock()
+    setInterval(UpdateClock, 1000);
 </script>
 </html>
