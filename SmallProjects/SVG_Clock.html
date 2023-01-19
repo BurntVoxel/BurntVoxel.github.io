@@ -62,7 +62,7 @@ svg#clock{
         let minutes = new Date().getMinutes();
         document.querySelector("#clock-minute-hand").setAttribute("transform", `rotate(${(minutes*6) + (seconds/10)}, 500, 500)`);
         let hours = new Date().getHours();
-        document.querySelector("#clock-hour-hand").setAttribute("transform", `rotate(${(hours*30) + (minutes/10) + (seconds*(1/6))}, 500, 500)`);
+        document.querySelector("#clock-hour-hand").setAttribute("transform", `rotate(${(hours*30) + (minutes/10)}, 500, 500)`);
     }
 
 </script>
