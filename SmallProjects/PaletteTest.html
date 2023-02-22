@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palette tester</title>
+<style>
+  body{
+    background-color: #888;
+    font-family: "Source Code Pro", monospace;
+    display:flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    gap: 1em;}
+
+  figure{
+    padding: 1em;
+    border: 1px solid var(--Foreground);
+    background-color: var(--Background);
+    color: var(--Foreground);
+  }
+
+  table caption{
+    font-weight:bold;
+    font-size: 1.5em;
+  }
+  table{
+    border-collapse:collapse;
+    width: 100%;
+  }
+     table th, table td{
+      padding: .25em .5em;
+      border: 1px transparent solid;
+      border: 1px solid var(--Comment);
+    }
+    table .Code{
+      color: var(--Comment);
+    }
+    table th{
+      background-color: var(--CurrentLine);
+    }
+
+  .ColorSwatch .TestA{
+    background-color:var(--Background);
+    color:var(--color);
+  }
+  .ColorSwatch .TestB{
+    background-color:var(--color);
+    color:var(--Foreground); 
+  }
+  .ColorSwatch .TestC{
+    background-color:var(--Foreground);
+    color:var(--color);
+  }
+  .ColorSwatch .TestD{
+    background-color:var(--color);
+    color:var(--Background);
+  }
+
+</style>
+
+<script>
+  function ExtractCssVars(Row){
+    if (Row.querySelector("td") == null){console.log("Skip heading"); return null;};
+
+    let VarTitle = Row.querySelector("td.Palette").innerText;
+    console.log("Working on " + VarTitle);
+    Row.style.setProperty("--color", "var(--"+VarTitle+")");
+    Row.classList.add(VarTitle);
+
+    let VarValue = Row.querySelector("td.Code").innerText;
+    return [VarTitle, VarValue];
+  }
+  function ParsePalette(Table){
+    console.log("Working on " + Table.querySelector("caption").innerText);
+    let Rows = Table.querySelectorAll("tr");
+    Rows.forEach(function (row){
+      let rule = ExtractCssVars(row);
+      if (rule == null){console.log("Skip heading...");return};
+      Table.parentElement.style.setProperty("--"+rule[0], rule[1]);
+    });
+  }
+  function ParseAllPalettes(){
+    console.log("Parsing all palettes");
+    let Tables = document.querySelectorAll("table.ColorSwatch");
+    Tables.forEach(ParsePalette);
+  }
+
+  window.onload = ParseAllPalettes;
+</script>
+</head>
+<body>
+  <figure class="DarkSide">
+    <table class="ColorSwatch">
+      <caption>
+        Dracula color theme
+      </caption>
+      <thead>
+        <tr>                 <th>Palette</th>                   <th>Code</th>      <th colspan="4">Testing</th> </tr>
+      </thead><tbody>
+        <tr> <td class="Palette">Background</td>   <td class="Code">#282a36</td>   <td class="TestA">##</td><td class="TestB">##</td><td class="TestC">##</td><td class="TestD">##</td> </tr>
+        <tr> <td class="Palette">Foreground</td>   <td class="Code">#f8f8f2</td>   <td class="TestA">##</td><td class="TestB">##</td><td class="TestC">##</td><td class="TestD">##</td> </tr>
+        <tr> <td class="Palette">Comment</td>      <td class="Code">#6272a4</td>   <td class="TestA">##</td><td class="TestB">##</td><td class="TestC">##</td><td class="TestD">##</td> </tr>
+        <tr> <td class="Palette">CurrentLine</td>  <td class="Code">#44475a</td>   <td class="TestA">##</td><td class="TestB">##</td><td class="TestC">##</td><td class="TestD">##</td> </tr>
+        <tr> <td class="Palette">Cyan</td>         <td class="Code">#8be9fd</td>   <td class="TestA">##</td><td class="TestB">##</td><td class="TestC">##</td><td class="TestD">##</td> </tr>
+        <tr> <td class="Palette">Green</td>        <td class="Code">#50fa7b</td>   <td class="TestA">##</td><td class="TestB">##</td><td class="TestC">##</td><td class="TestD">##</td> </tr>
+        <tr> <td class="Palette">Orange</td>       <td class="Code">#ffb86c</td>   <td class="TestA">##</td><td class="TestB">##</td><td class="TestC">##</td><td class="TestD">##</td> </tr>
+        <tr> <td class="Palette">Pink</td>         <td class="Code">#ff79c6</td>   <td class="TestA">##</td><td class="TestB">##</td><td class="TestC">##</td><td class="TestD">##</td> </tr>
+        <tr> <td class="Palette">Purple</td>       <td class="Code">#bd93f9</td>   <td class="TestA">##</td><td class="TestB">##</td><td class="TestC">##</td><td class="TestD">##</td> </tr>
+        <tr> <td class="Palette">Red</td>          <td class="Code">#ff5555</td>   <td class="TestA">##</td><td class="TestB">##</td><td class="TestC">##</td><td class="TestD">##</td> </tr>
+        <tr> <td class="Palette">Yellow</td>       <td class="Code">#f1fa8c</td>   <td class="TestA">##</td><td class="TestB">##</td><td class="TestC">##</td><td class="TestD">##</td> </tr>
+      </tbody>
+    </table>
+  </figure>
+  <figure class="BrightSide">
+    <table class="ColorSwatch">
+      <caption>
+        Paladin(?) color theme
+      </caption>
+      <thead>
+        <tr>                 <th>Palette</th>                   <th>Code</th>    <th colspan="4">Testing</th> </tr>
+      </thead><tbody>
+        <tr> <td class="Palette">Background</td>   <td class="Code">#f8f8f2</td> <td class="TestA">##</td><td class="TestB">##</td><td class="TestC">##</td><td class="TestD">##</td> </tr>
+        <tr> <td class="Palette">Foreground</td>   <td class="Code">#282a36</td> <td class="TestA">##</td><td class="TestB">##</td><td class="TestC">##</td><td class="TestD">##</td> </tr>
+        <tr> <td class="Palette">Comment</td>      <td class="Code">#a1a17c</td> <td class="TestA">##</td><td class="TestB">##</td><td class="TestC">##</td><td class="TestD">##</td> </tr>
+        <tr> <td class="Palette">CurrentLine</td>  <td class="Code">#dadab7</td> <td class="TestA">##</td><td class="TestB">##</td><td class="TestC">##</td><td class="TestD">##</td> </tr>
+        <tr> <td class="Palette">Cyan</td>         <td class="Code">#01809c</td> <td class="TestA">##</td><td class="TestB">##</td><td class="TestC">##</td><td class="TestD">##</td> </tr>
+        <tr> <td class="Palette">Green</td>        <td class="Code">#019727</td> <td class="TestA">##</td><td class="TestB">##</td><td class="TestC">##</td><td class="TestD">##</td> </tr>
+        <tr> <td class="Palette">Orange</td>       <td class="Code">#944c00</td> <td class="TestA">##</td><td class="TestB">##</td><td class="TestC">##</td><td class="TestD">##</td> </tr>
+        <tr> <td class="Palette">Pink</td>         <td class="Code">#8b0451</td> <td class="TestA">##</td><td class="TestB">##</td><td class="TestC">##</td><td class="TestD">##</td> </tr>
+        <tr> <td class="Palette">Purple</td>       <td class="Code">#3e058f</td> <td class="TestA">##</td><td class="TestB">##</td><td class="TestC">##</td><td class="TestD">##</td> </tr>
+        <tr> <td class="Palette">Red</td>          <td class="Code">#880606</td> <td class="TestA">##</td><td class="TestB">##</td><td class="TestC">##</td><td class="TestD">##</td> </tr>
+        <tr> <td class="Palette">Yellow</td>       <td class="Code">#758003</td> <td class="TestA">##</td><td class="TestB">##</td><td class="TestC">##</td><td class="TestD">##</td> </tr>
+      </tbody>
+    </table>
+  </figure>
+</body>
+</html>

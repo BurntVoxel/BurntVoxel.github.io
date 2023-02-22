@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rocky Mountain Artisan Guild</title>
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <style>
+    @import url("../skltl/CSS/Skltl.css");
+
+    .Stack {
+      display: flex;
+      flex-flow: column nowrap;
+    }
+    .Row {
+      display:flex;
+      flex-flow: row wrap;
+      justify-content:space-around;
+      align-items:stretch;
+    }
+
+    body {
+      font-size: 1.5rem;
+      overflow:scroll;
+      min-height: 100%;
+    }
+
+    header {
+      text-align: center;
+    }
+
+    header img {
+      height: 5em;
+      max-width: 90%;
+    }
+
+    .WoodBack {
+      background: linear-gradient(0deg,
+          rgba(56, 42, 31, 0.85) 0%,
+          rgba(0, 0, 0, 0) 1em),
+        linear-gradient(180deg,
+          rgba(243, 212, 188, 0.85) 0%,
+          rgba(255, 255, 255, 0) 1em),
+        repeat url("Art/Woodgrain-seamless.svg") center;
+    }
+
+    .GraphPaper {
+      background: url("Art/GraphPaper.svg") center;
+    }
+    .Workbench{
+      background: url("Art/tools.jpg");
+      background-size:cover;
+      background-position:center;
+    }
+  </style>
+</head>
+
+<body class="GraphPaper">
+  <header class="WoodBack">
+    <img src="./Logos/Logo-wordmark.svg" alt="Rocky Mountain Artisan Guild" />
+  </header>
+  <article class="Stack">
+    <section class="Row">
+      <section style="padding: 1em; text-align:center;">
+        <h1>Create something wonderful together.</h1>
+        <p>
+          Come join our local community of craftsmanship, <br />
+          both traditional trades and modern techniques. <br /> <br />
+          Work with the technologies that have <br />
+          thrown doors open for creative potential.  <br /> <br />
+          Learn from each other about the arts of <br />
+          fine handmade woodwork and more. <br /> <br />
+        </p>
+      </section>
+    </section>
+    <section class="Row" style="
+      background:#eaad6c;
+      color:#1c1510;
+      text-shadow:0 0 .1em #a64f13;
+    ">
+      <div class="Workbench" style="
+        flex-grow:2;
+        flex-basis:5em;
+        min-height:5em;
+      ">
+      </div>
+      <div>
+        <p style="
+          padding: 1em;
+          text-align:center;
+        ">
+          We are an organization with one goal in mind: <br/>
+          uniting the makers, fixers, tinkerers, nerds, <br/> 
+          and curious minds of our communities.  <br>
+          Sharing tools is only the start of what we're about!
+        </p>
+      </div>
+    </section>
+    <section>
+      <div>
+        Perks of joining:
+        <ul>
+          <li>Sharing tools means no need to store them yourself.</li>
+          <li>Learn new skills from local artisans.</li>
+          <li>Work in a space with like-minded individuals, not in the garage.</li>
+        </ul>
+      </div>
+    </section>
+  </article>
+  <footer>
+    <p>A project by Clancy Clawson.</p>
+    <p>
+      Notice: The Artisan Guild is NOT in operation at this time. I have great
+      interest in such a business, but at this time I cannot promise anything
+      or answer questions with certainty. However, any feedback is
+      <em>greatly</em> appreciated. See GitHub repo for contact info.
+    </p>
+  </footer>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg width="25mm" height="25mm" viewBox="0 0 25 25" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+   <style>
+      #GraphPaper {
+         fill: #cdd8ec;
+         stroke: #69bcd0;
+         fill-opacity: 1;
+         stroke-width: 0.25;
+         stroke-dasharray: none;
+         stroke-opacity: 1;
+         stroke-linecap: square;
+      }
+
+      @media screen and (prefers-color-scheme: dark) {
+         #GraphPaper {
+            fill: #112349;
+            stroke: #25417e;
+         }
+      }
+   </style>
+   <g id="GraphPaper">
+      <rect id="tile" width="50" height="50" x="0" y="0" style="stroke-width:.75"/>
+      <path d="M  5,0 V 25" id="v1" />
+      <path d="M 10,0 V 25" id="v2" />
+      <path d="M 15,0 V 25" id="v3" />
+      <path d="M 20,0 V 25" id="v4" />
+      <path d="M 0, 5 H 25" id="h1" />
+      <path d="M 0,10 H 25" id="h2" />
+      <path d="M 0,15 H 25" id="h3" />
+      <path d="M 0,20 H 25" id="h4" />
+   </g>
+</svg>
